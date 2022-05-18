@@ -1,5 +1,5 @@
 {% set name = "JTango" %}
-{% set version = "9.6.8" %}
+{% set version = "9.7.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://gitlab.com/tango-controls/JTango/-/archive/{{ version }}/JTango-{{ version }}.tar.gz
-  sha256: 64928e1dd38ea80a2b873737599b400dba7469c581bfb07e017a21c8bafe5ab7
+  sha256: e1b8031ad439b47466cb19c3e18d15d01fb09e62adf5b6176dad06539738314d
 
 build:
   number: 0
@@ -32,7 +32,7 @@ about:
     - LICENSE
     - aggregate-third-party-report.html
 
-  summary: 'TANGO kernel Java implementation.'
+  summary: TANGO kernel Java implementation.
   description: |
     TANGO kernel Java implementation. Compatible with Java 8 and onwards.
     Tango-Controls is a software toolkit for building control systems.
