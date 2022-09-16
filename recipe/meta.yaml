@@ -10,7 +10,7 @@ source:
   sha256: e1b8031ad439b47466cb19c3e18d15d01fb09e62adf5b6176dad06539738314d
 
 build:
-  number: 0
+  number: 1
   noarch: generic
 
 requirements:
@@ -24,6 +24,8 @@ test:
   commands:
     - test -f ${PREFIX}/share/java/JTango.jar
     - test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar
+    - test -f ${PREFIX}/share/tango/logback.xml
+    - test -f ${PREFIX}/share/tango/logback-server.xml
 
 about:
   home: https://www.tango-controls.org
