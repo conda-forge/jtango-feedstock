@@ -11,7 +11,6 @@ source:
 
 build:
   number: 1
-  noarch: generic
 
 requirements:
   build:
@@ -22,10 +21,13 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/share/java/JTango.jar
-    - test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar
-    - test -f ${PREFIX}/share/tango/logback.xml
-    - test -f ${PREFIX}/share/tango/logback-server.xml
+    - test -f ${PREFIX}/share/java/JTango.jar                      # [unix]
+    - test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar       # [unix]
+    - test -f ${PREFIX}/share/tango/logback.xml                    # [unix]
+    - test -f ${PREFIX}/share/tango/logback-server.xml             # [unix]
+    - if not exist %PREFIX%\share\java\JTango.jar exit 1           # [win]
+    - if not exist %PREFIX%\share\tango\logback.xml exit 1         # [win]
+    - if not exist %PREFIX%\share\tango\logback-server.xml exit 1  # [win]
 
 about:
   home: https://www.tango-controls.org
