@@ -1,5 +1,5 @@
 {% set name = "JTango" %}
-{% set version = "9.7.0" %}
+{% set version = "9.7.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://gitlab.com/tango-controls/JTango/-/archive/{{ version }}/JTango-{{ version }}.tar.gz
-  sha256: e1b8031ad439b47466cb19c3e18d15d01fb09e62adf5b6176dad06539738314d
+  sha256: 1da51146d14dd5f7943bc278969684e5d8a2f224f4abeb737ead8e6519012ddb
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
