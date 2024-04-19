@@ -13,10 +13,10 @@ build:
 
 requirements:
   build:
-    - openjdk 8
+    - openjdk 11
     - maven
   run:
-    - openjdk >=8
+    - openjdk >=11
 
 outputs:
   - name: jtango-logback
