@@ -1,8 +1,7 @@
-{% set name = "JTango" %}
 {% set version = "9.7.2" %}
 
 package:
-  name: {{ name|lower }}
+  name: jtango-split
   version: {{ version }}
 
 source:
@@ -10,7 +9,7 @@ source:
   sha256: 6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -19,15 +18,32 @@ requirements:
   run:
     - openjdk >=8
 
-test:
-  commands:
-    - test -f ${PREFIX}/share/java/JTango.jar                      # [unix]
-    - test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar       # [unix]
-    - test -f ${PREFIX}/share/tango/logback.xml                    # [unix]
-    - test -f ${PREFIX}/share/tango/logback-server.xml             # [unix]
-    - if not exist %PREFIX%\share\java\JTango.jar exit 1           # [win]
-    - if not exist %PREFIX%\share\tango\logback.xml exit 1         # [win]
-    - if not exist %PREFIX%\share\tango\logback-server.xml exit 1  # [win]
+outputs:
+  - name: jtango-logback
+    script: install-logback.sh  # [unix]
+    script: install-logback.bat  # [win]
+    test:
+      commands:
+        - test -f ${PREFIX}/share/tango/logback.xml                    # [unix]
+        - test -f ${PREFIX}/share/tango/logback-server.xml             # [unix]
+        - if not exist %PREFIX%\share\tango\logback.xml exit 1         # [win]
+        - if not exist %PREFIX%\share\tango\logback-server.xml exit 1  # [win]
+        # Test absence of jar file
+        - test ! -f ${PREFIX}/share/java/JTango.jar                    # [unix]
+        - if exist %PREFIX%\share\java\JTango.jar exit 1               # [win]
+
+  - name: jtango
+    script: install-jar.sh   # [unix]
+    script: install-jar.bat  # [win]
+    requirements:
+      run:
+        - {{ pin_subpackage("jtango-logback", exact=True) }}
+        - openjdk >=8
+    test:
+      commands:
+        - test -f ${PREFIX}/share/java/JTango.jar                      # [unix]
+        - test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar       # [unix]
+        - if not exist %PREFIX%\share\java\JTango.jar exit 1           # [win]
 
 about:
   home: https://www.tango-controls.org
@@ -44,5 +60,6 @@ about:
   dev_url: https://gitlab.com/tango-controls/JTango
 
 extra:
+  feedstock-name: jtango
   recipe-maintainers:
     - beenje
