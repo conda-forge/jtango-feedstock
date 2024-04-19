@@ -69,6 +69,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-jtango-green.svg)](https://anaconda.org/conda-forge/jtango) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jtango.svg)](https://anaconda.org/conda-forge/jtango) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jtango.svg)](https://anaconda.org/conda-forge/jtango) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jtango.svg)](https://anaconda.org/conda-forge/jtango) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-jtango--logback-green.svg)](https://anaconda.org/conda-forge/jtango-logback) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jtango-logback.svg)](https://anaconda.org/conda-forge/jtango-logback) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jtango-logback.svg)](https://anaconda.org/conda-forge/jtango-logback) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jtango-logback.svg)](https://anaconda.org/conda-forge/jtango-logback) |
 
 Installing jtango
 =================
@@ -80,16 +81,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `jtango` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `jtango, jtango-logback` can be installed with `conda`:
 
 ```
-conda install jtango
+conda install jtango jtango-logback
 ```
 
 or with `mamba`:
 
 ```
-mamba install jtango
+mamba install jtango jtango-logback
 ```
 
 It is possible to list all of the versions of `jtango` available on your platform with `conda`:
@@ -136,7 +137,7 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance
