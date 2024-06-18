@@ -1,4 +1,4 @@
-{% set version = "9.7.2" %}
+{% set version = "9.7.3" %}
 
 package:
   name: jtango-split
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://gitlab.com/tango-controls/JTango/-/archive/{{ version }}/JTango-{{ version }}.tar.gz
-  sha256: 6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391
+  sha256: d67a8924d91284504192c90bb71bea48c037980cf292a77efecc2733c7da6f94
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -33,7 +33,7 @@ outputs:
         - if exist %PREFIX%\share\java\JTango.jar exit 1               # [win]
 
   - name: jtango
-    script: install-jar.sh   # [unix]
+    script: install-jar.sh  # [unix]
     script: install-jar.bat  # [win]
     requirements:
       run:
