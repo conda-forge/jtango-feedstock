@@ -8,4 +8,4 @@ mvn install -DskipTests
 
 # Generate third party license report
 mvn license:aggregate-third-party-report
-cp target/site/aggregate-third-party-report.html .
+cp target/reports/aggregate-third-party-report.html .
