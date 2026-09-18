@@ -1,0 +1,82 @@
+schema_version: 1
+
+context:
+  version: "9.7.4"
+
+recipe:
+  name: jtango-split
+  version: ${{ version }}
+
+source:
+  url: https://gitlab.com/tango-controls/JTango/-/archive/${{ version }}/JTango-${{ version }}.tar.gz
+  sha256: 210fc12000710673902233ce938601695a3b37b300a4f29be13fb6140d734d4e
+
+build:
+  number: 0
+
+outputs:
+  - staging:
+      name: jtango-build
+    requirements:
+      build:
+        - openjdk 11.*
+        - maven
+    build:
+      script:
+        env:
+          JTANGO_VERSION: ${{ version }}
+        file: build
+
+  - package:
+      name: jtango-logback
+    inherit:
+      from: jtango-build
+      run_exports: false
+    build:
+      script:
+        file: install-logback
+    tests:
+      - package_contents:
+          files:
+            exists:
+              - share/tango/logback.xml
+              - share/tango/logback-server.xml
+            not_exists:
+              - share/java/JTango.jar
+  - package:
+      name: jtango
+    inherit: jtango-build
+    build:
+      script:
+        env:
+          JTANGO_VERSION: ${{ version }}
+        file: install-jar
+    requirements:
+      run:
+        - ${{ pin_subpackage("jtango-logback", exact=True) }}
+        - openjdk >=11
+    tests:
+      - package_contents:
+          files:
+            - share/java/JTango.jar
+            - if: unix
+              then:
+                - share/java/JTango-${{ version }}.jar
+
+about:
+  license: LGPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - aggregate-third-party-report.html
+  summary: TANGO kernel Java implementation.
+  description: |
+    TANGO kernel Java implementation.
+    Tango-Controls is a software toolkit for building control systems.
+  homepage: https://www.tango-controls.org
+  repository: https://gitlab.com/tango-controls/JTango
+  documentation: https://jtango.readthedocs.io/
+
+extra:
+  feedstock-name: jtango
+  recipe-maintainers:
+    - beenje
