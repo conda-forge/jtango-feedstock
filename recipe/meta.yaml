@@ -1,4 +1,4 @@
-{% set version = "9.7.4" %}
+{% set version = "10.0.1" %}
 
 package:
   name: jtango-split
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://gitlab.com/tango-controls/JTango/-/archive/{{ version }}/JTango-{{ version }}.tar.gz
-  sha256: 210fc12000710673902233ce938601695a3b37b300a4f29be13fb6140d734d4e
+  sha256: 47de26e50a9d630c1f2b42026d1dceafa48b64424c888327c05468e91946369b
 
 build:
   number: 0
