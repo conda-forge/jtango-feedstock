@@ -1,7 +1,7 @@
 setlocal EnableDelayedExpansion
 
 cd parent
-call mvn versions:set versions:update-child-modules -DnewVersion=%PKG_VERSION% -DprocessAllModule -DgenerateBackupPoms=false -Prelease
+call mvn versions:set versions:update-child-modules -DnewVersion=%JTANGO_VERSION% -DprocessAllModule -DgenerateBackupPoms=false -Prelease
 cd ..
 
 REM Skip the tests because they require to have a tango database running
